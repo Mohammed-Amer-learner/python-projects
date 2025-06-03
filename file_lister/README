@@ -1,0 +1,31 @@
+# 📂 File Lister – Python Script
+
+A simple Python script that lists all files inside given folders and handles common errors like missing folders or permission issues.
+
+---
+
+## 🛠️ How It Works
+
+1. Define the folder paths in the script:
+```python
+folder_paths = ["path/to/folder1", "path/to/folder2"]
+
+2. Run the script from the command line:
+       python file_lister.py
+
+📤 Output:
+    ✅ Lists the files found in each folder.
+    ⚠️ Prints an error message if a folder does not exist or cannot be accessed.
+
+🧯 Error Handling:
+    * FileNotFoundError: The folder path does not exist.
+    * PermissionError: Access to the folder is denied.
+    
+💡 Example Usage:
+If your folders are:
+folder_paths = ["C:/Users/YourName/Documents", "/home/user/downloads"]
+
+Running the script will print the files inside each folder or appropriate error messages.
+📄 Requirements:
+    Python 3.x
+    No external libraries required
