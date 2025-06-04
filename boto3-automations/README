@@ -1,1 +1,116 @@
+## 📦 AWS Lambda Project – S3 Bucket Creator & Snapshot Cleaner
 
+This repository contains two AWS Lambda functions written in Python using the `boto3` SDK:
+
+1. **Create an S3 Bucket**
+2. **Delete Unused EC2 Snapshots**
+
+---
+
+### 📁 Project Structure
+
+```bash
+lambda_aws_utilities/
+│
+├── create_s3_bucket.py          # Lambda function to create an S3 bucket
+├── delete_unused_snapshots.py   # Lambda function to clean up EC2 snapshots
+├── README.md                    # Project documentation
+```
+
+---
+
+### ✅ Function 1: Create S3 Bucket
+
+**File**: `create_s3_bucket.py`
+
+This Lambda function creates a new S3 bucket with a fixed name (`ams_rule_001`).
+
+#### 🔧 Code Summary:
+
+```python
+import boto3
+
+def lamda_handler(event, context):
+    s3 = boto3.client('s3')
+    s3.create_bucket(Bucket='ams_rule_001')
+    return {
+        'status': 200,
+        'body': 's3 bucket enabled!'
+    }
+```
+
+> ⚠️ Ensure this function runs only once or modify the code to check for the bucket's existence before creation to avoid `BucketAlreadyExists` errors.
+
+---
+
+### 🧹 Function 2: Delete Unused EC2 Snapshots
+
+**File**: `delete_unused_snapshots.py`
+
+This Lambda function checks all EC2 snapshots owned by your account and deletes those not used by any currently attached EBS volumes.
+
+#### 🔧 Code Summary:
+
+```python
+import boto3
+
+def lambda_handler(event, context):
+    ec2 = boto3.client('ec2')
+
+    volume_snapshots = [
+        vol['SnapshotId'] for vol in ec2.describe_volumes()['Volumes']
+        if 'SnapshotId' in vol
+    ]
+
+    snapshots = ec2.describe_snapshots(OwnerIds=['self'])['Snapshots']
+
+    for snapshot in snapshots:
+        snapshot_id = snapshot['SnapshotId']
+        if snapshot_id not in volume_snapshots:
+            try:
+                ec2.delete_snapshot(SnapshotId=snapshot_id)
+                print(f"Deleted: {snapshot_id}")
+            except Exception as e:
+                print(f"Failed to delete {snapshot_id}: {e}")
+```
+
+> ✅ Be sure the Lambda execution role has `ec2:Describe*`, `ec2:DeleteSnapshot`, and `ec2:DescribeSnapshots` permissions. If it doesn't add one by one for 'least privilege'.
+
+---
+
+### 🔐 IAM Permissions Required
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:CreateBucket",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeSnapshots",
+        "ec2:DeleteSnapshot"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+---
+
+### 🚀 Deployment Tips
+
+* Set the Lambda runtime to **Python 3.9+**
+* Add **boto3** if using outside of AWS Lambda console (though it’s included by default inside AWS Lambda).
+* Adjust **S3 bucket name** to be unique globally.
+* Consider parameterizing bucket name and region via environment variables.
+
+---
+
+### 👨‍💻 Author
+
+**Mohammed Amer**
+📍 Hyderabad, India
+📧 [mohammedamer9553@gmail.com](mailto:mohammedamer9553@gmail.com)
