@@ -1,0 +1,44 @@
+# GitHub PR User ID Fetcher
+
+A simple Python script to fetch and print the GitHub user ID of the author of the latest pull request in a public GitHub repository.
+
+## Description
+
+This script uses the GitHub REST API to get the list of pull requests for the Kubernetes repository and prints the user ID of the author of the first (most recent) pull request.
+
+## Requirements
+
+- Python 3.x
+- `requests` library
+
+Install the `requests` library if not already installed:
+
+```bash
+pip install requests
+````
+
+## Usage
+
+Run the script:
+
+```bash
+python github_pr_userid_fetcher.py
+```
+
+It will print the numeric GitHub user ID of the author of the most recent pull request.
+
+## Notes
+
+* The script fetches data from the public Kubernetes GitHub repository.
+* You can modify the repository URL in the code to check other repos.
+* The script does not require authentication for public repositories but may be rate-limited by GitHub.
+
+## Example
+
+Output might be:
+
+```
+12345678
+```
+
+which is the GitHub user ID of the PR author.
