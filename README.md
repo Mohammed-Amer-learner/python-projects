@@ -41,7 +41,7 @@ A simple calculator that performs basic operations (add, sub, mul, div) using co
 
 Mohammed Amer  
 📍 Hyderabad, India  
-📧 [mohammedamer9553@gmai.com / Linked in will add later]  
+📧 [mohammedamer9553@gmai.com / Linkedin will add later]  
 
 ---
 
