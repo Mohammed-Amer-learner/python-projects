@@ -44,20 +44,44 @@ A Python script that fetches the user ID of the creator of the latest pull reque
   * Parses JSON responses from GitHub API
   * Extracts user login and ID from PR data
 
-📄 [View GitHub PR UserID Fetcher Script](github-pr-userid-fetcher/fetcher-script/github_pr_userid_fetcher.py)
+📄 [View GitHub PR UserID Fetcher Script](github_pr_userid_fetcher/pr_user_fetcher.py)
+
+---
+
+### 4. ☁️ Boto3 AWS DevOps Automation Scripts
+
+A collection of automation scripts using `boto3` for managing AWS resources. These scripts help in daily DevOps activities such as EC2 management, S3 bucket operations, IAM tasks, and more.
+
+* **Key Features:**
+
+  * Automates tasks like starting/stopping EC2, snapshot cleanup, S3 encryption
+  * Designed for Lambda compatibility
+  * IAM-secure and scalable
+
+📄 [View Boto3 Automation Scripts](boto3_aws_devops/README.md)
 
 ---
 
 ## 📌 Requirements
 
 * Python 3.x
-* `requests` library (install via `pip install requests` for project 3)
-* Internet connection for GitHub API access (project 3)
+* Standard libraries (`os`, `sys`, etc.)
+* `requests` library (`pip install requests`) – for GitHub PR Fetcher
+* `boto3` library (`pip install boto3`) – for AWS DevOps automation
+* AWS credentials configured for Boto3-based scripts
+* Internet access (for GitHub API and AWS calls)
 
 ---
 
 ## 👤 Author
 
-Mohammed Amer
+**Mohammed Amer**
 📍 Hyderabad, India
-📧 \[[mohammedamer9553@gmail.com](mailto:mohammedamer9553@gmail.com) / Linkedin will add later]
+📧 [mohammedamer9553@gmail.com](mailto:mohammedamer9553@gmail.com)
+🔗 *LinkedIn to be added soon*
+
+---
+
+## 📝 License
+
+MIT License — feel free to use, modify, and share these projects for learning or personal use.
