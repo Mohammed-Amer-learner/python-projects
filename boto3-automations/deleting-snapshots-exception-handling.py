@@ -21,3 +21,7 @@ def lambda_handler(event, context):
                 print(f"Deleted: {snapshot_id}")
             except Exception as e:
                 print(f"Failed to delete {snapshot_id}: {e}")
+if __name__ == "__main__":
+    lambda_handler(None, None)
+
+# Output: Checks and deletes orphaned EBS snapshots that are not used by any existing volume.
