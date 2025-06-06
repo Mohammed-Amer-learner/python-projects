@@ -11,3 +11,5 @@ def lambda_handler(event=None, context=None):
 if __name__ == "__main__":
     response = lambda_handler()
     print(response)
+
+#output : {'status': 200, 'body': 'S3 bucket enabled!'}
