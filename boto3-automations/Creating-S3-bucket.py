@@ -1,9 +1,13 @@
 import boto3
 
-def lamda_handler(event, context):
+def lambda_handler(event=None, context=None):
     s3 = boto3.client('s3')
-    s3.create_bucket(Bucket = 'ams_rule_001')
-    return{
-        'status' : 200,
-        'body' : 's3 bucket enabled!'
+    s3.create_bucket(Bucket='ams-rule-001')  # bucket names must not have underscores
+    return {
+        'status': 200,
+        'body': 'S3 bucket enabled!'
     }
+
+if __name__ == "__main__":
+    response = lambda_handler()
+    print(response)
