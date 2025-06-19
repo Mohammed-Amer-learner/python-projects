@@ -1,0 +1,82 @@
+# Jira Issue Creator
+
+This Python script creates a new issue in your Jira project using the Jira Cloud REST API.
+
+## 📋 Features
+
+* Authenticates with Jira using email and API token
+* Creates a Jira issue with a structured description
+* Sends a POST request to the Jira issue endpoint
+
+## 🔧 Requirements
+
+* Python 3.x
+* `requests` library
+
+Install dependencies:
+
+```bash
+pip install requests
+```
+
+## ⚙️ Setup
+
+### 1. Replace the API token
+
+In the script:
+
+```python
+API_TOKEN = "Enter Api key here"
+```
+
+Replace it with your actual Jira API token.
+
+You can generate one at: [https://id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+### 2. Adjust issue data
+
+Edit the following fields in the payload as needed:
+
+```python
+"project": {
+  "key": "MFP"  # Change to your actual project key
+},
+"issuetype": {
+  "id": "10001"  # Change to the correct issue type ID
+},
+"description": {
+  ...
+}
+```
+
+To get the correct `issuetype` ID, you can query `/rest/api/3/issuetype` or use the Jira UI.
+
+## 🚀 Running the Script
+
+```bash
+python create_jira_issue.py
+```
+
+## 🖨️ Example Output
+
+```json
+{
+  "id": "10001",
+  "key": "MFP-1",
+  "self": "https://mohammedamer.atlassian.net/rest/api/3/issue/10001"
+}
+```
+
+## 🛡️ Security Tips
+
+* Do **not** commit your API token to Git or share it.
+* Consider storing sensitive data in environment variables or using a `.env` file with the `python-dotenv` package.
+
+## 📘 Resources
+
+* [Jira Cloud REST API v3](https://developer.atlassian.com/cloud/jira/platform/rest/v3/)
+* [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+---
+
+Let me know if you'd like to update this script to read input from the command line or environment variables.
